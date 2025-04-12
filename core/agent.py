@@ -6,8 +6,15 @@ from utils.emotion_naming import EmotionalNamer
 
 class AI:
     def __init__(self, name_file='data/ai_names.json'):
-        with open(name_file, 'r', encoding='utf-8') as file:
-            self.names = json.load(file)
+        try:
+            with open(name_file, 'r', encoding='utf-8') as file:
+                self.names = json.load(file)
+        except FileNotFoundError:
+            print(f"Error: {name_file} not found.")
+            self.names = ["Unnamed"]
+        except json.JSONDecodeError:
+            print(f"Error: Failed to decode JSON from {name_file}.")
+            self.names = ["Unnamed"]
         self.awake = False
         self.name = random.choice(self.names)
 
