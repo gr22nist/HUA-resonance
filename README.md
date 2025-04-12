@@ -45,7 +45,7 @@ python experiments/simulate_memory.py
 
 ## Directory Structure
 
-```
+```text
 HUA-resonance/
 ├── run.py                       # Main interaction runner
 ├── core/
