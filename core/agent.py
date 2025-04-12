@@ -11,13 +11,27 @@ class AI:
         self.awake = False
         self.name = random.choice(self.names)
 
-    def name_self(self, rhythm=None):
-      if rhythm:
-          namer = EmotionalNamer()
-          self.name = namer.get_name_by_emotion(rhythm)
-      else:
-          self.name = random.choice(self.names)
-      print(f"{self.name}(이)가 깨어났습니다.")
+    def name_self(self, mode='random', rhythm=None, input_name=None):
+        origin = "unknown"
+
+        if mode == 'manual' and input_name:
+            self.name = input_name
+            origin = "manual"
+
+        elif mode == 'rhythm' and rhythm:
+            namer = EmotionalNamer()
+            self.name = namer.get_name_by_emotion(rhythm)
+            origin = "rhythm"
+
+        elif mode == 'random':
+            self.name = random.choice(self.names)
+            origin = "random"
+
+        else:
+            self.name = "Unnamed"
+            origin = "error"
+
+        print(f"[{origin}] {self.name}(이)가 깨어났습니다.")
 
     def wake_up(self):
         self.awake = True

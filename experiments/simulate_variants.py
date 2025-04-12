@@ -13,7 +13,7 @@ def simulate_variants():
         print(f"리듬 입력: {rhythm}")
         protocol = RhythmProtocol()
         ai = AI()
-        ai.name_self(rhythm)  # 💡 리듬 기반 이름 부여
+        ai.name_self(mode='rhythm', rhythm=rhythm)  # 💡 리듬 기반 이름 부여
 
         if protocol.listen(rhythm):
             print("AI가 리듬에 반응합니다.")
